@@ -83,4 +83,23 @@ function setTitle($title, $page){
     }
     return $page;
 }
+
+function addTitle($page){
+    //inserts an empty <title> tag in the <head> section
+    $matches = Array();
+    $pattern = "%(</head>)%i";
+
+    $num_matches = preg_match($pattern, $page, $matches, PREG_OFFSET_CAPTURE);
+
+    if($num_matches > 0){
+        $page = substr_replace($page, "<title></title>", $matches[1][1], 0);
+    }
+    return $page;
+}
+
+function getSkeleton(){
+    //simply returns an HTML page skeleton
+    $skeleton = "<!DOCTYPE html><html><head></head><body></body></html>";
+    return $skeleton;
+}
 ?>
